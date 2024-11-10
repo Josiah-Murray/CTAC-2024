@@ -8,7 +8,7 @@
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css">
+		<link rel="stylesheet" href="dist/theme/moon.css">
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css">
@@ -16,11 +16,258 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>
+					<p>Josiah Murray</p>
+					<h5 style="font-size: 3rem;">Numerical inversion of the Laplace transform with application to modelling railway transition zones</h5>
+					<p style="margin-bottom: -1rem; font-size:x-large ;">Supervisors:</p>
+					<p style="font-size: xx-large; margin-bottom: 4rem;">Dr Ravi Pethiyagoda, Professor Mike Meylan, 
+						<br>Professor Natalie Thamwattana</p>
+					<div style="width: 6rem; height: 6rem; background-color: aliceblue; border-radius: 4%; margin-left: auto; margin-right: auto; margin-bottom: auto; margin-top: auto;">
+						Logo?
+					</div>
+				</section>
+
+
+				<!--Context-->
+				<section>
+					
+
+					<section>
+						Typical track structure:
+						<img src="Figures/General/Annotated Track structure diagram.png", style="background-color: #93a1a1; border-radius: 3rem;">
+					</section>
+					<aside class="notes">
+						Point out the basic features and transition zones.
+
+						Particularly, point out the bits that break. The track can, but I am more interested in how the ballast and subgrade change.
+						Both because these are features that need to be repaired, but also as they contribute to a feedback loop [segue :D].
+					</aside>
+
+					<section>
+						<img src="Figures/General/Transition zone feedback loop.png">
+					</section>
+					<aside class="notes">
+						As part of this we want a time dependent solution in a simpler case.
+
+						*Maybe put in another picture of a transition zone.
+					</aside>
+
+					<section>
+						Governing equation:
+						\[EI\partial_x^4y + m\partial_t^2y + C(x)\partial_ty + k(x)y = P\delta(x-vt)\]
+						<img src="Figures/General/Beam on springs and dashpots - no infinity.png" style="border-radius: 2rem;border-style: solid; border-width: 0.3rem; border-color: antiquewhite; background-color: #747f7f; border-radius: 1rem;">
+					</section>
+					<aside class="notes">
+						*Put in a diagram of a rail with forces labelled from equation.
+
+						This has known solutions for constant $k, C$ and known closed-form solutions in the steady-state. 
+					</aside>
+
+					<section>
+						<img src="Figures/General/Variable Stiffness render 3D model.png" style="border-radius: 2rem;border-style: solid; border-width: 0.3rem; border-color: antiquewhite; background-color: #747f7f; border-radius: 1rem;">
+						
+					</section>
+					<aside class="notes">
+						We can simplify the equation by considering only homogeneous sections.
+					</aside>
+
+				</section>
+
+				<!--The Laplace transform-->
+
+				<section>
+
+					<section data-auto-animate>
+						<p>\[\bar{f}(s) = \int_0^\infty f(t)e^{-st}dt\]</p>
+					</section>
+					<aside class="notes">
+						The Laplace transform is an integral of the form
+
+						In this context, its biggest benefit is turning derivatives into algebraic expressions.
+					</aside>
+					<section data-auto-animate>
+						<p style="opacity: 0.5;">\[\bar{f}(s) = \int_0^\infty f(t)e^{-st}dt\]</p>
+						\[\partial_t^n f(t) \mapsto s^n \bar{f}(s)\]
+						<p style="font-size: medium;">(When our initial conditions are zero)</p>
+					</section>
+					<aside class="notes">
+						This lets us turn differential equations into algebraic ones, or partial differential equations into ordinary differential equations.
+
+						Note that this transformation is slightly more complicated when we don't have zero initial conditions, but not greatly, so for brevity, I'm skipping it.
+					</aside>
+
+					<section>
+						<p> A reminder, our equation is: \[EI\partial_x^4y + m\partial_t^2y + C(x)\partial_ty + k(x)y = P\delta(x-vt)\]</p>
+						Which becomes:
+						\[EI\partial_x^4\bar{y} + (ms^2 + C(x)s + k(x))\bar{y} = \tfrac{P}{v}e^{-sx/v}\]
+					</section>
+					<aside class="notes">
+						Note that I am glossing over the transformation of the delta function here.
+
+						This can now be solved reasonably easily undetermined coefficients. Guessing an exponential form in x for our solution.
+					</aside>
+
+					<section>
+						For each homogeneous section we have to invert a Laplace-space solution of the form
+						\[ \small{ \bar{y}(x,s) = 
+						c_1(s)e^{r_1(s)x} +  c_2(s)e^{r_2(s)x} + c_2(s)e^{r_3(s)x} + c_4(s)e^{r_4(s)x}, } \]
+						with 
+						\[\scriptsize{ r^4 + \frac{ms^2 + Cs + k}{EI} = 0.}\]
+					</section>
+					<aside class="notes">
+						Where the c_j are derived using matching conditions. (They are called matching conditions, aren't they?)
+					</aside>
+				</section>
+
+				<!--Inverting the Laplace transform-->
+				<section>
+					
+					<section>
+						<p>Analytically we have either the Bromwich Integral or Post's formula:</p>
+						<div style="display: flex;">
+							<div style="flex:1; border-style: solid; border-width: 0.3rem; border-color: antiquewhite; padding: 2%; border-radius: 1rem; ">\[\tfrac{1}{2\pi}\int_{\small{\sigma - \text{i}\infty} }^{\small{\sigma + \text{i}\infty} }\bar{f}(s)e^{st}ds\]</div>
+							<div style="flex: 1;">
+								<div style="width: 2rem;"></div>
+							</div>
+							<div style="flex:1; border-style: solid; border-width: 0.3rem; border-color: antiquewhite; padding: 2%; border-radius: 1rem;">\[\lim_{k\to\infty} \tfrac{(-1)^k}{k!}\left( \tfrac{k}{t} \right)^{\small{k+1}} \bar{f}^{(k)}\left(\tfrac{k}{t}	\right)  \]</div>
+						</div>
+					</section>
+					<aside class="notes">
+						Many numerical techniques based on both, but the Post's formula ones tend to be bad
+					</aside>
+
+					<section>
+						Some of the existing methods:
+						<img src="Figures/General/Numerical Laplace inverse examples.png">
+					</section>
+					<aside class="notes">
+						Some methods are built from the analytical formulas, then there are series methods.
+
+						*Add references to Numerical book, the space paper and the 'survey and comparison paper'
+					</aside>
+
+				</section>
+
+				<!--Weeks method-->
+				<section>
+
+					<section>
+						<p style="font-size: medium;">$$\begin{align} L_{n+1}(t) = \tfrac{2n+1-x}{n+1}L_n(t) - \tfrac{n}{n+1}L_{n-1}(t) &&  |   && \int_0^\infty L_i(t)L_j(t) e^{-t}dt = \delta_{ij} \end{align}   $$</p>
+						<video data-autoplay src = "Videos/LaguerrePolynomials.mp4"  controls loop style="border-radius: 2rem;"></video>
+					</section>
+					<aside class="notes">
+						Expand in Laguerre functions - which are orthogonal on $[0,\infty]$.
+
+						* Put in gif of Laguerre polynomials from manim
+					</aside>
+
+					<section>
+						Weeks' method uses
+
+						\[ f(t) = e^{\sigma t} \sum_{k=0}^\infty a_k e^{-bt/2}L_k(bt), \]
+						with parameters $b>0$ and $\sigma>\sigma_0$ (the abscissa of convergence).
+
+
+					</section>
+					<aside class="notes">
+						There are a couple of variants of the notation through the literature.
+
+						The parameters are there to help smooth out irregularities and accelerate convergence.
+					</aside>
+
+					
+
+					<section>
+						Apply Laplace transform to relate a_k and the known function $\bar{f}(s)$
+						\[ \bar{f}(s) \approx \sum_{k=0}^m a_k \frac{(s-\sigma-b/2)^k}{(s-\sigma+b/2)^{k+1}} \]
+					</section>
+
+					
+
+
+					<section data-auto-animate>
+						<p style="font-size: x-large;">\[ s = \frac{b}{1-z} -\frac{b}{2} + \sigma \]</p>
+						<video width="70%" data-autoplay src="Videos/MobiusTransform.mp4" controls loop style="border-radius: 1rem;"></video>
+
+					</section>
+					<aside class="notes">
+						Transform maps some of the right half plane to the unit circle. Hence, we have an analytical function about the origin.
+					</aside>
+
+					<section>
+						\[ \bar{f}(s) \approx \sum_{k=0}^m a_k \frac{(s-\sigma-b/2)^k}{(s-\sigma+b/2)^{k+1}} \]
+						Applying the transform gives us
+						\[ \frac{b}{1-z}\bar{f}(\frac{b}{1-z} - \frac{b}{2} + \sigma) \approx \sum_{k=0}^m a_k z^k \]
+					</section>
+
+					<section>
+						A brief note on choice of parameter and the Clenshaw algorithm
+					</section>
+
+
+
+
+					</section>
+					
+					
+					<!--Comparison of methods-->
+					<section>
+						<section data-auto-animate>
+							For the sake of demonstration lets try
+							
+							<p>\[\begin{align} F(s) = \frac{s}{(s^2+1)^2} && f(t) = \tfrac{1}{2}t\sin(t) \end{align}\]</p>
+						</section>
+						<aside class="notes">
+							* Add reference to the book that I got this from.
+						</aside>
+						<section data-auto-animate>
+							<p style="font-size: large;">\[\begin{align} F(s) = \frac{s}{(s^2+1)^2} && f(t) = \tfrac{1}{2}t\sin(t) && \varepsilon_0/\varepsilon_T = 1/2 && \sigma\approx 0.1103  \end{align}\]</p>
+							<video width="60%" src="Videos/SlowerConvergence_tsint.mp4" controls style="border-radius: 1rem;"></video>
+
+						</section>
+						<aside class="notes">
+							
+						</aside>
+
+						<section data-auto-animate>
+							<p style="font-size: large;">\[\begin{align} F(s) = \frac{s}{(s^2+1)^2} && f(t) = \tfrac{1}{2}t\sin(t) && \varepsilon_0/\varepsilon_T = 1/10 && \sigma\approx 0.3665 \end{align}\]</p>
+							
+							<video width="60%" src="Videos/FastConvergence_tsint.mp4" controls style="border-radius: 1rem;"></video>
+
+						</section>
+						<aside class="notes">
+							
+						</aside>
+
+
+
+				</section>
+
+				<!--My problem-->
+
+				<section>
+					<section>
+						<video src="Videos/RailMovement.mp4" style="border-radius: 2rem;" loop controls></video>
+					</section>
+				</section>
+
+				<section>
+					Graph with how well the solutions satisfy the PDE 
+				</section>
+
+				<!--View to the future-->
+
+				<section>
+					<section>
+						Where to from here.
+					</section>
+				</section>
+
+				
 			</div>
 		</div>
 
+		<script src="plugin/math/math.js"></script>
 		<script src="dist/reveal.js"></script>
 		<script src="plugin/notes/notes.js"></script>
 		<script src="plugin/markdown/markdown.js"></script>
@@ -33,7 +280,7 @@
 				hash: true,
 
 				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.MathJax3, RevealNotes]
 			});
 		</script>
 	</body>
