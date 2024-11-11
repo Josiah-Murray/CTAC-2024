@@ -9,6 +9,7 @@
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
 		<link rel="stylesheet" href="dist/theme/moon.css">
+		<link rel="stylesheet" href="custom.css"
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css">
@@ -44,12 +45,19 @@
 					</aside>
 
 					<section>
-						<img src="Figures/General/Transition zone feedback loop.png">
+						<img src="Figures/General/Transition zone feedback loop.png" style="height: fit-content; margin-bottom: 0;">
+						<div class="citation">
+							<ul>
+								<li>
+									Based on a figure from:
+									Indraratna, B., Babar Sajjad, M., Ngo, T., Gomes Correia, A., & Kelly, R. (2019). Improved performance of ballasted tracks at transition zones: A review of experimental and modelling approaches. Transportation Geotechnics, 21, 100260. https://doi.org/10.1016/j.trgeo.2019.100260
+								</li>
+							</ul>
+
+						</div>
 					</section>
 					<aside class="notes">
 						As part of this we want a time dependent solution in a simpler case.
-
-						*Maybe put in another picture of a transition zone.
 					</aside>
 
 					<section>
@@ -58,14 +66,12 @@
 						<img src="Figures/General/Beam on springs and dashpots - no infinity.png" style="border-radius: 2rem;border-style: solid; border-width: 0.3rem; border-color: antiquewhite; background-color: #747f7f; border-radius: 1rem;">
 					</section>
 					<aside class="notes">
-						*Put in a diagram of a rail with forces labelled from equation.
 
 						This has known solutions for constant $k, C$ and known closed-form solutions in the steady-state. 
 					</aside>
 
 					<section>
 						<img src="Figures/General/Variable Stiffness render 3D model.png" style="border-radius: 2rem;border-style: solid; border-width: 0.3rem; border-color: antiquewhite; background-color: #747f7f; border-radius: 1rem;">
-						
 					</section>
 					<aside class="notes">
 						We can simplify the equation by considering only homogeneous sections.
@@ -139,6 +145,20 @@
 					<section>
 						Some of the existing methods:
 						<img src="Figures/General/Numerical Laplace inverse examples.png">
+						<div class="citation">
+							<ul>
+								<li>
+									Cohen, A. M. (2007). Numerical Methods for Laplace Transform Inversion (1st ed., Vol. 5). Springer US. https://doi.org/10.1007/978-0-387-68855-8
+								</li>
+								<li>
+									Davies, B., & Martin, B. (1979). Numerical inversion of the laplace transform: a survey and comparison of methods. Journal of Computational Physics, 33(1), 1–32. https://doi.org/10.1016/0021-9991(79)90025-1
+								</li>
+								<li>
+									Kuhlman, K. L. (2013). Review of inverse Laplace transform algorithms for Laplace-space numerical approaches. Numerical Algorithms, 63(2), 339–355. https://doi.org/10.1007/s11075-012-9625-3
+								</li>
+								
+							</ul>
+						</div>
 					</section>
 					<aside class="notes">
 						Some methods are built from the analytical formulas, then there are series methods.
@@ -157,8 +177,6 @@
 					</section>
 					<aside class="notes">
 						Expand in Laguerre functions - which are orthogonal on $[0,\infty]$.
-
-						* Put in gif of Laguerre polynomials from manim
 					</aside>
 
 					<section>
@@ -239,6 +257,13 @@
 							For the sake of demonstration lets try
 							
 							<p>\[\begin{align} F(s) = \frac{s}{(s^2+1)^2} && f(t) = \tfrac{1}{2}t\sin(t) \end{align}\]</p>
+							<div class="citation">
+								<ul>
+									<li>
+										Cohen, A. M. (2007). Numerical Methods for Laplace Transform Inversion (1st ed., Vol. 5). Springer US. https://doi.org/10.1007/978-0-387-68855-8
+									</li>
+								</ul>
+							</div>
 						</section>
 						<aside class="notes">
 							* Add reference to the book that I got this from.
