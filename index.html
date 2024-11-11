@@ -166,13 +166,25 @@
 
 						\[ f(t) = e^{\sigma t} \sum_{k=0}^\infty a_k e^{-bt/2}L_k(bt), \]
 						with parameters $b>0$ and $\sigma>\sigma_0$ (the abscissa of convergence).
-
-
+						<p style="font-size: large;">Note that this sum should be computed using Clenshaw's summation formula for recursive functions.</p>
 					</section>
 					<aside class="notes">
 						There are a couple of variants of the notation through the literature.
 
 						The parameters are there to help smooth out irregularities and accelerate convergence.
+					</aside>
+
+					<section>
+						<p style="font-size: large;">\[ f(t) = e^{\sigma t} \sum_{k=0}^\infty a_k e^{-bt/2}L_k(bt), \]</p>
+						Some rules of thumb:
+						\[\sigma = \tfrac{1}{t_\text{max}}\ln(\varepsilon_{t_{\text{max}}}/\varepsilon_0) + \sigma_0\]
+						\[b = 2(\sigma-\sigma_0)\] 
+
+
+					</section>
+					<aside class="notes">
+						Sigma helps control error/convergence rates
+						b changes the x-scale of the Laguerre function (and hence over what interval we have roots of the Laguerre polynomials) 
 					</aside>
 
 					
@@ -196,13 +208,24 @@
 
 					<section>
 						\[ \bar{f}(s) \approx \sum_{k=0}^m a_k \frac{(s-\sigma-b/2)^k}{(s-\sigma+b/2)^{k+1}} \]
-						Applying the transform gives us
-						\[ \frac{b}{1-z}\bar{f}(\frac{b}{1-z} - \frac{b}{2} + \sigma) \approx \sum_{k=0}^m a_k z^k \]
+						Applying the Möbius transform gives us
+						\[ \tfrac{b}{1-z}\bar{f}\left(\tfrac{b}{1-z} - \tfrac{b}{2} + \sigma \right) \approx \sum_{k=0}^m a_k z^k \]
 					</section>
 
 					<section>
-						A brief note on choice of parameter and the Clenshaw algorithm
+					
+						With 
+						\[\phi(z) = \tfrac{b}{1-z}\bar{f}\left(\tfrac{b}{1-z} - \tfrac{b}{2} + \sigma \right),\] 
+						we use the Cauchy integral form of the derivative,
+						\[a_k = \frac{\phi^{(k)}(0)}{k!} = \tfrac{1}{2\pi \text{i}}\int_C\frac{\phi(z)}{z^{k+1}}\]
 					</section>
+					<aside class="notes">
+						The coefficients can then be found using the Cauchy integral form of the derivative and evaluated using a quadrature rule.
+
+						Note that the particular quadrature rule used is the difference between the different variants of Weeks method.
+					</aside>
+
+					
 
 
 
@@ -249,18 +272,49 @@
 					<section>
 						<video src="Videos/RailMovement.mp4" style="border-radius: 2rem;" loop controls></video>
 					</section>
+
+					<section>
+						\[L(x,t, y) = EI\partial_x^4y + m\partial_t^2 y + C\partial_t y + ky \]
+						Evaluate using finite difference
+
+					</section>
+
+					<section>
+						We "expect" that $L(x,y,t) = P\delta(x-vt)$
+						<div style="display: flex; flex-direction: row;">
+							<img src="Figures/Numerical/LaplaceFourierLinearOperator.svg" width="50%" style="margin-right: 1rem; border-radius: 2rem; border-style: none; border-color: #7FF0EB; border-width: 0.5rem;">
+							<img src="Figures/Numerical/UCLaplaceLinearOperator.svg" width = "50%" style="margin-left: 1rem; border-radius: 2rem; border-style: none; border-color: #7FF0EB; border-width: 0.5rem">
+						</div>
+					</section>
 				</section>
 
-				<section>
-					Graph with how well the solutions satisfy the PDE 
-				</section>
+				
 
 				<!--View to the future-->
 
 				<section>
 					<section>
-						Where to from here.
+						<img src="Figures/General/Planned Work.png">
 					</section>
+				</section>
+
+
+				<!--Other stuff-->
+				<section>
+					<section>
+						Notable references:
+					</section>
+
+					<section>
+						All beam calculations are done using the default values:
+						$$\begin{align}&EI = 2.3\times 10^3\\ 
+						&C = 10^7\\
+						&k = 69\times10^6\\
+						&m = 48\\
+						&P = -98066.5\\
+						&v=0\end{align}$$
+					</section>
+
 				</section>
 
 				
