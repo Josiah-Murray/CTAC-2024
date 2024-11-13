@@ -23,8 +23,10 @@
 					<p style="margin-bottom: -1rem; font-size:x-large ;">Supervisors:</p>
 					<p style="font-size: xx-large; margin-bottom: 4rem;">Dr Ravi Pethiyagoda, Professor Mike Meylan, 
 						<br>Professor Natalie Thamwattana</p>
-					<div style="width: 6rem; height: 6rem; background-color: aliceblue; border-radius: 4%; margin-left: auto; margin-right: auto; margin-bottom: auto; margin-top: auto;">
-						Logo?
+					<div style=" display: flex; flex-direction: row; background-color: #ece9df; border-radius: 1rem; margin-left: auto; margin-right: auto; margin-bottom: auto; margin-top: auto; height: fit-content; width: fit-content; padding: 1.5rem">
+						<img src="Figures/Logos/UON_Alternative.svg" style="height: 5rem; width: 5rem; margin: 1rem; ">
+						<div style="width: 4rem;"></div>
+						<img src="Figures/Logos/PC formatted Stacked ARC logo.svg" style="height: 5rem; margin-right: 1rem;">
 					</div>
 				</section>
 
@@ -185,6 +187,11 @@
 						\[ f(t) = e^{\sigma t} \sum_{k=0}^\infty a_k e^{-bt/2}L_k(bt), \]
 						with parameters $b>0$ and $\sigma>\sigma_0$ (the abscissa of convergence).
 						<p style="font-size: large;">Note that this sum should be computed using Clenshaw's summation formula for recursive functions.</p>
+						<div class="citation">
+							<ul>
+								<li>Clenshaw, C. W. (1955). A note on the summation of Chebyshev series. Mathematics of Computation, 9(51), 118–120. https://doi.org/10.1090/S0025-5718-1955-0071856-0</li>
+							</ul>
+						</div>
 					</section>
 					<aside class="notes">
 						There are a couple of variants of the notation through the literature.
@@ -198,6 +205,13 @@
 						\[\sigma = \tfrac{1}{t_\text{max}}\ln(\varepsilon_{t_{\text{max}}}/\varepsilon_0) + \sigma_0\]
 						\[b = 2(\sigma-\sigma_0)\] 
 
+						<div class="citation">
+							<ul>
+								<li>
+									Garbow, B. S., Giunta, G., Lyness, J. N., & Murli, A. (1988). Software for an implementation of Weeks’ method for the inverse Laplace transform. ACM Transactions on Mathematical Software, 14(2), 163–170. https://doi.org/10.1145/45054.45057
+								</li>
+							</ul>
+						</div>
 
 					</section>
 					<aside class="notes">
@@ -327,7 +341,42 @@
 				<!--Other stuff-->
 				<section>
 					<section>
-						Notable references:
+						<p style="font-size: large;;">This research was supported by the Australian Government through the ARC’s
+							Discovery Projects funding scheme (project DP22010286). The views expressed herein are those of the
+							authors and are not necessarily those of the Australian Government or the ARC.</p>
+
+
+						<p>Notable references:</p>
+
+						<ul style="font-size: medium; font-style: italic;">
+							<li>
+								Clenshaw, C. W. (1955). A note on the summation of Chebyshev series. Mathematics of Computation, 9(51), 118–120. https://doi.org/10.1090/S0025-5718-1955-0071856-0
+							</li>
+							<li>
+								Cohen, A. M. (2007). Numerical Methods for Laplace Transform Inversion (1st ed., Vol. 5). Springer US. https://doi.org/10.1007/978-0-387-68855-8
+							</li>
+							<li>
+								Davies, B., & Martin, B. (1979). Numerical inversion of the laplace transform: a survey and comparison of methods. Journal of Computational Physics, 33(1), 1–32. https://doi.org/10.1016/0021-9991(79)90025-1
+							</li>
+							<li>
+								Garbow, B. S., Giunta, G., Lyness, J. N., & Murli, A. (1988). Software for an implementation of Weeks’ method for the inverse Laplace transform. ACM Transactions on Mathematical Software, 14(2), 163–170. https://doi.org/10.1145/45054.45057
+							</li>
+							<li>
+								Kuhlman, K. L. (2013). Review of inverse Laplace transform algorithms for Laplace-space numerical approaches. Numerical Algorithms, 63(2), 339–355. https://doi.org/10.1007/s11075-012-9625-3
+							</li>
+							<li>
+								Lyness, J. N., & Giunta, G. (1986). A Modification of the Weeks Method for Numerical Inversion of the Laplace Transform. Mathematics of Computation, 47(175), 313. https://doi.org/10.2307/2008097
+							</li>
+							<li>
+								Piessens, R., & Maria branders, M. A. (1971). Numerical inversion of the Laplace transform using generalised Laguerre polynomials. Proceedings of the Institution of Electrical Engineers, 118(10), 1517. https://doi.org/10.1049/piee.1971.0278
+							</li>
+							<li>
+								Weeks, W. T. (1966). Numerical Inversion of Laplace Transforms Using Laguerre Functions. Journal of the ACM, 13(3), 419–429. https://doi.org/10.1145/321341.321351
+							</li>
+						</ul>
+
+
+
 					</section>
 
 					<section>
