@@ -9,7 +9,7 @@
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
 		<link rel="stylesheet" href="dist/theme/moon.css">
-		<link rel="stylesheet" href="custom.css"
+		<link rel="stylesheet" href="custom.css">
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css">
@@ -199,30 +199,14 @@
 						The parameters are there to help smooth out irregularities and accelerate convergence.
 					</aside>
 
-					<section>
-						<p style="font-size: large;">\[ f(t) = e^{\sigma t} \sum_{k=0}^\infty a_k e^{-bt/2}L_k(bt), \]</p>
-						Some rules of thumb:
-						\[\sigma = \tfrac{1}{t_\text{max}}\ln(\varepsilon_{t_{\text{max}}}/\varepsilon_0) + \sigma_0\]
-						\[b = 2(\sigma-\sigma_0)\] 
 
-						<div class="citation">
-							<ul>
-								<li>
-									Garbow, B. S., Giunta, G., Lyness, J. N., & Murli, A. (1988). Software for an implementation of Weeks’ method for the inverse Laplace transform. ACM Transactions on Mathematical Software, 14(2), 163–170. https://doi.org/10.1145/45054.45057
-								</li>
-							</ul>
-						</div>
 
-					</section>
-					<aside class="notes">
-						Sigma helps control error/convergence rates
-						b changes the x-scale of the Laguerre function (and hence over what interval we have roots of the Laguerre polynomials) 
-					</aside>
+					
 
 					
 
 					<section>
-						Apply Laplace transform to relate a_k and the known function $\bar{f}(s)$
+						Apply Laplace transform to relate $a_k$ and the known function $\bar{f}(s)$
 						\[ \bar{f}(s) \approx \sum_{k=0}^m a_k \frac{(s-\sigma-b/2)^k}{(s-\sigma+b/2)^{k+1}} \]
 					</section>
 
@@ -308,8 +292,9 @@
 				<!--My problem-->
 
 				<section>
+
 					<section>
-						<video src="Videos/RailMovement.mp4" style="border-radius: 2rem;" loop controls></video>
+						<video src="Videos/MethodComparisonWith3DModel.mov" style="border-radius: 2rem; mix-blend-mode: screen;" loop controls></video>
 					</section>
 
 					<section>
@@ -381,13 +366,33 @@
 
 					<section>
 						All beam calculations are done using the default values:
-						$$\begin{align}&EI = 2.3\times 10^3\\ 
-						&C = 10^7\\
-						&k = 69\times10^6\\
-						&m = 48\\
-						&P = -98066.5\\
-						&v=0\end{align}$$
+						$$\begin{align}&EI = 2.3\times 10^3 \text{ Nm}^2\\ 
+						&C = 10^7 \text{ Ns/m}^2\\
+						&k = 69\times10^6 \text{ N/m}^2 \\
+						&m = 48 \text{ kg}\\
+						&P = -98066.5 \text{ N}\\
+						&v=0 \text{ m/s}\end{align}$$
 					</section>
+
+					<section>
+						<p style="font-size: large;">\[ f(t) = e^{\sigma t} \sum_{k=0}^\infty a_k e^{-bt/2}L_k(bt), \]</p>
+						Some rules of thumb:
+						\[\sigma = \tfrac{1}{t_\text{max}}\ln(\varepsilon_{t_{\text{max}}}/\varepsilon_0) + \sigma_0\]
+						\[b = 2(\sigma-\sigma_0)\] 
+
+						<div class="citation">
+							<ul>
+								<li>
+									Garbow, B. S., Giunta, G., Lyness, J. N., & Murli, A. (1988). Software for an implementation of Weeks’ method for the inverse Laplace transform. ACM Transactions on Mathematical Software, 14(2), 163–170. https://doi.org/10.1145/45054.45057
+								</li>
+							</ul>
+						</div>
+
+					</section>
+					<aside class="notes">
+						Sigma helps control error/convergence rates
+						b changes the x-scale of the Laguerre function (and hence over what interval we have roots of the Laguerre polynomials) 
+					</aside>
 
 				</section>
 
